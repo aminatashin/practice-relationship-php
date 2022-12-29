@@ -15,18 +15,18 @@ class documentController extends Controller
     }
 
     public function store(Request $request){
-        $form=$request->validate([
-            'name'=>'required',
-            
-            
-           
-           
-        ]);
-        // if($request->hasFile('document')){
-        //     $form['document'] = $request->file('document')->store('files','public');
-        // }
-        documentModel::create($form);
-        return redirect('/');
+      $form = $request->validate([
+        'title'=>'required'
+      ]);
+      if($request->hasFile('title')){
+        $form['title']=$request->file('title')->store('files','public');
+      }
+      $form['title']= $request->file('title');
+      $fullname=$form['title']->$request->file('title')->getClientOriginalExtension();
+      $extention=$form['title']->$request->file('title')->getClientOriginalExtension();
+      $name=explode('.'.$extention,$fullname);
+      documentModel::create($name);
+      return redirect('/');
 
     }
 }

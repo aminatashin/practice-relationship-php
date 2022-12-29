@@ -18,13 +18,13 @@
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light">Upload Document</div>
                 <div class="list-group list-group-flush">
-                    <form method="POST" action="/upload">
+                    <form method="POST" action="/upload" enctype="multipart/form-data" >
                         @csrf
                    <input
-                        type="text"
+                        type="file"
                         class="border border-gray-200 rounded p-2 w-full"
-                        name="name"
-                        value="{{old('name')}}"
+                        name="title"
+                        value="{{old('title')}}"
                        
                     />
                     <button class="ml-2">add</button>
@@ -40,7 +40,7 @@
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                                <li class="nav-item active"><a class="nav-link" href="#!">Home</a></li>
+                                <li class="nav-item active"><a class="nav-link" href="/signup">signup</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#!">Link</a></li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -68,7 +68,8 @@
                                     class="px-4 py-8 border-t border-b border-gray-300 text-lg"
                                 >
                                    
-                                       <p>{{$pdf->name}}</p>
+                                       <p>{{$pdf->title}}</p>
+                                       
                                    
                                 </td>
                                
@@ -98,7 +99,7 @@
                 </div>
             </div>
             <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light">Users</div>
+                <div class="sidebar-heading border-bottom bg-light">user</div>
                 <div class="list-group list-group-flush">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dashboard</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Shortcuts</a>

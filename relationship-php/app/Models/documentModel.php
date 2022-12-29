@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class documentModel extends Model
 {
     use HasFactory;
-    protected $fillable=['name'];
+    protected $fillable=['title'];
     protected $table ='document_models';
 }

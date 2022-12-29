@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\documentController;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\userController;
+use App\Http\Controllers\documentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[documentController::class,'index']);
 Route::post('/upload',[documentController::class,'store']);
+Route::get('/signup',[userController::class,'signup']);
+Route::post('/register',[userController::class,'register']);
