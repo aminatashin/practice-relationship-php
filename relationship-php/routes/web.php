@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\documentController;
+use App\Models\documentModel;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +19,11 @@ use App\Http\Controllers\documentController;
 
 Route::get('/',[documentController::class,'index']);
 Route::post('/upload',[documentController::class,'store']);
+Route::delete('/download/{title}',[documentController::class,'destroy']);
+Route::get('/view/{id}',[documentController::class,'show']);
+
+Route::get('/download/{title}',[documentController::class,'download']);
+
 Route::get('/signup',[userController::class,'signup']);
 Route::post('/register',[userController::class,'register']);
+

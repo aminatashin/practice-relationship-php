@@ -137,25 +137,7 @@
     <P class="text-red-500 text-xs mt-1">{{$message}}</P>  
     @enderror
 </div>
-{{-- ------- --}}
-{{-- <div class="mb-6">
-    <label for="number" class="inline-block text-lg mb-2"
-        > Contact Number</label
-    >
-    <input
-        type="number"
-        class="border border-gray-200 rounded p-2 w-full"
-        name="number"
-        placeholder="Example: musium"
-        value="{{old('number')}}"
-    />
-    @error('number')
-    <P class="text-red-500 text-xs mt-1">{{$message}}</P>  
-    @enderror
-</div> --}}
-{{-- ------- --}}
 
-{{-- ------- --}}
 
  
 
@@ -188,10 +170,7 @@
   </div>
 
 
-    <!-- Footer -->
-{{-- <footer class="w3-center w3-black w3-padding-16 ">
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-  </footer> --}}
+
   
   </body>
   </html>

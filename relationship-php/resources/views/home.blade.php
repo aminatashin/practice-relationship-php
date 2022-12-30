@@ -25,6 +25,8 @@
                         class="border border-gray-200 rounded p-2 w-full"
                         name="title"
                         value="{{old('title')}}"
+                        {{-- accept="title/*"
+                        multiple --}}
                        
                     />
                     <button class="ml-2">add</button>
@@ -58,43 +60,54 @@
                 <!-- Page content-->
                 <div class="container-fluid">
                     <h1 class="mt-4">Uploaded File</h1>
-                    <table class="w-full table-auto rounded-sm">
+                    
                       
-                        <tbody>
+                     
                             @unless($pdfs->isEmpty())
-                            @foreach($pdfs as $pdf)
-                            <tr class="border-gray-300">
-                                <td
-                                    class="px-4 py-8 border-t border-b border-gray-300 text-lg"
-                                >
-                                   
-                                       <p>{{$pdf->title}}</p>
-                                       
-                                   
-                                </td>
-                               
-                                {{-- <td
-                                    class="px-4 py-8 border-t border-b border-gray-300 text-lg"
-                                >
-                                <form method="POST" action="/disaster/{{$listing->id}}" >
-                                    @csrf
-                                    @method("DELETE")
+                           
+                            <table class="table table-striped">
+                              <thead>
+                                  <tr>
                                     
-                                    <button style="min-width: 6rem" class="btn btn-danger ml-5 ">Delete</button>
-                                </form>
-                                </td> --}}
-                            </tr>
-                            @endforeach
-                            @else
-                            <tr class="border-gray-300">
-                                <td class="px-4 px-8 border-t border b border-gray-300 text-lg">
-                                    <p class="text-center">No content</p>
-                                </td>
-                            </tr>
-
-                            @endunless
-                        </tbody>
-                    </table>
+                                    <th>File</th>
+                                    <th>Total Files</th>
+                                    <th>View</th>
+                                    <th>Download</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($pdfs as $pdf)
+                                    <tr>
+                                        <td>{{$pdf->title}}</td>
+                                        {{-- <td>{{$pdf->titles->count()}}</td> --}}
+                                        <td><a href={{"/view/$pdf->id"}}>View</a></td>
+                                        <td><a href={{"/download/$pdf->title"}}>Download</a></td>
+                                        <td>  <form method="POST" action="/download/{{$pdf->id}}" >
+                                            @csrf
+                                            @method("DELETE")
+                                            
+                                            <button style="min-width: 6rem" class="btn btn-danger ml-5 ">Delete</button>
+                                        </form></td>
+                                    </tr>
+                                    @endforeach
+                                    @else
+                                    <tr >
+                                        <td colspan="5">
+                                            <p class="text-center">No content</p>
+                                        </td>
+                                    </tr>
+        
+                                    @endunless
+                                </tbody>
+                               
+                              
+                             
+                         
+                        </table>
+                       
+                           
+                          
+                     
                     
                 </div>
             </div>
