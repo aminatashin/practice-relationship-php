@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\support\Facades\Storage;
+
 use App\Http\Controllers\Controller;
 use App\Models\documentModel;
-use App\Models\DocumentUserModel;
+
 use App\Models\User;
 
 class documentController extends Controller
@@ -33,12 +33,9 @@ class documentController extends Controller
     $filename=time(). '.' .$file-> getClientOriginalName();
     $request->title->move('assets',$filename);
     $data->title=$filename;
+    $data['user_id']=auth()->id();
     $data->save();
 
-  $documentModel = DocumentUserModel::create([
-    'user_id' => auth()->id(),
-    'document_id' => $data->id
-  ]);
 
     return redirect('/');
     }

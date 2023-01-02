@@ -8,17 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class documentModel extends Model
 {
     use HasFactory;
-    protected $fillable=['title'];
-    protected $table ='document_models';
-
+    protected $fillable=['title','user_id'];
+    protected $table='document';
     public function users(){
-        return $this->belongsTo(DocumentUserModel::class);
+        return $this->belongsTo(User::class,'user_id');
     }
-
-//public function userDocuments
-
-public function documents(){
-    return $this->hasMany(DocumentUserModel::class, 'document_id', 'id');
-   }
-    
 }
