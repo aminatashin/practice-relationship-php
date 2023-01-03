@@ -19,12 +19,12 @@ class documentController extends Controller
 
    
 
-    public function show($id){
-      $documentModel = documentModel::find($id);
-      
-      return view ('list',[
-      'pdf'=>$documentModel->load('documents.user')
-      ]);
+    public function show(documentModel $id){
+     
+     return view('list',[
+      'pdf'=>$id
+     ]); 
+     
     }
 
     public function store(Request $request){
@@ -41,10 +41,13 @@ class documentController extends Controller
     }
   
     public function download(Request $request, $title){
-      return response()->download(public_path('assets/'.$title));
+      return response()->download(public_path('assets'.$title));
     }
 
     public function destroy(documentModel $title){
+      if($title->user_id != auth()->id()){
+        abort('403','Only the Creator!');
+      }
       $title->delete();
       return redirect('/');
     }

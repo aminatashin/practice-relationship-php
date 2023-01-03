@@ -70,24 +70,30 @@
                                   <tr>
                                     
                                     <th>File</th>
-                                    <th>Total Files</th>
+                                    
                                     <th>View</th>
                                     <th>Download</th>
+                                    <th>Delete</th>
+                                   
+                                    <th>Created By</th>
+                                    
                                   </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($pdfs as $pdf)
                                     <tr>
                                         <td>{{$pdf->title}}</td>
-                                        {{-- <td>{{$pdf->titles->count()}}</td> --}}
+                                        {{-- <td>{{$pdf->title->count()}}</td> --}}
                                         <td><a href={{"/view/$pdf->id"}}>View</a></td>
                                         <td><a href={{"/download/$pdf->title"}}>Download</a></td>
+                                        
                                         <td>  <form method="POST" action="/download/{{$pdf->id}}" >
                                             @csrf
                                             @method("DELETE")
                                             
                                             <button style="min-width: 6rem" class="btn btn-danger ml-5 ">Delete</button>
                                         </form></td>
+                                        <td>{{$pdf->user_id}}</td>
                                     </tr>
                                     @endforeach
                                     @else
@@ -112,14 +118,13 @@
                 </div>
             </div>
             <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light">user</div>
+                <div class="sidebar-heading border-bottom bg-light">{{auth()->user()->name}}  </div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dashboard</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Shortcuts</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Overview</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
+                    @foreach ($pdfs as $pdf)
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">{{$pdf->user_id}}</a>
+                    @endforeach
+                   
+                 
                 </div>
             </div>
         </div>

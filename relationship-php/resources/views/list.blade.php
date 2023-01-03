@@ -12,7 +12,7 @@
     users:
     
     
-    {{dd($pdf->documents)}}
+    
 </p>
  
 </body>
