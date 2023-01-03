@@ -23,7 +23,9 @@ Route::delete('/download/{title}',[documentController::class,'destroy']);
 Route::get('/view/{id}',[documentController::class,'show']);
 
 Route::get('/download/{title}',[documentController::class,'download']);
-
+Route::get('/login',[documentController::class,'login']);
+Route::post('/user/login',[userController::class,'userLogin']);
 Route::get('/signup',[userController::class,'signup']);
 Route::post('/register',[userController::class,'register']);
+Route::post('/logout',[userController::class,'logout']);
 

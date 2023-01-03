@@ -52,5 +52,8 @@ class documentController extends Controller
       return redirect('/');
     }
 
+    public function login(){
+      return view('login');
+    }
 
 }

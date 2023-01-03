@@ -48,11 +48,11 @@
   <div class="bg-gray-50 border border-gray-200 rounded p-6 max-w-lg mx-auto mt-24" >
   <header class="text-center">
       <h2 class="text-2xl font-bold uppercase mb-1">
-          Sign Up
+          Log In
       </h2>
       {{-- <p class="mb-4">Post Disaster Site</p> --}}
   </header>
-  <form method="POST" action="/register" enctype="multipart/form-data" >
+  <form method="POST" action="/user/login" enctype="multipart/form-data" >
     @csrf
    
     @if(session('success'))
@@ -60,34 +60,8 @@
         {{session('success')}}
     </div>
     @endif
-    {{-- <div class="mb-6">
-        <label for="pic" class="inline-block text-lg mb-2">
-           Profile Picture
-        </label>
-        <input
-            type="file"
-            class="border border-gray-200 rounded p-2 w-full"
-            name="pic"
-            value="{{old('pic')}}"
-        />
-        @error('pic')
-        <P class="text-red-500 text-xs mt-1">{{$message}}</P>  
-        @enderror
-    </div> --}}
-    <div class="mb-6">
-        <label for="name" class="inline-block text-lg mb-2">
-            Name
-        </label>
-        <input
-            type="text"
-            class="border border-gray-200 rounded p-2 w-full"
-            name="name"
-            value="{{old('name')}}"
-        />
-        @error('name')
-        <P class="text-red-500 text-xs mt-1">{{$message}}</P>  
-        @enderror
-    </div>
+   
+ 
 
 
 {{-- ------- --}}
@@ -122,21 +96,7 @@
     <P class="text-red-500 text-xs mt-1">{{$message}}</P>  
     @enderror
 </div>
-<div class="mb-6">
-    <label for="Password2" class="inline-block text-lg mb-2"
-        > Confirm Password</label
-    >
-    <input
-        type="password"
-        class="border border-gray-200 rounded p-2 w-full"
-        name="password_confirmation"
-        placeholder="Example:Confirm Password"
-      
-    />
-    @error('password_confirmation')
-    <P class="text-red-500 text-xs mt-1">{{$message}}</P>  
-    @enderror
-</div>
+
 
 
  
@@ -148,19 +108,19 @@
         <button
             class="btn btn-primary text-white rounded py-2 px-4 hover:bg-black"
         >
-           Sign Up
+           Log In
         </button>
 
        <a href="/"><button  type="button" class="btn btn-secondary text-black">Back</button></a>
 
     </div>
     <div class="mb-6  justify-content-center text-center">
-        <a href="/login">
+        <a href="/signup">
         <button
         type="button"
             class="btn btn-success text-black rounded py-2 px-4 hover:bg-black"
         >
-          Have an Account? <a href="/login">Log In</a> 
+         Don't Have an Account? Sign Up
         </button>
     </a>
     </div>

@@ -25,5 +25,25 @@ class userController extends Controller
 
     }
 
+
+    public function userLogin(Request $request){
+        $form = $request->validate([
+            'email'=>['required','email'],
+            'password'=>'required'
+        ]);
+        if(auth()->attempt($form)){
+            $request-> session()->regenerate();
+            return redirect('/');
+        }
+        return back()->withErrors(['email'=>'invalid credentials'])->onlyInput('email');
+
+    }
+
+    public function logout(Request $request){
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    }
 }
 
