@@ -19,10 +19,13 @@ use App\Models\documentModel;
 
 Route::get('/',[documentController::class,'index']);
 Route::post('/upload',[documentController::class,'store']);
-Route::delete('/download/{title}',[documentController::class,'destroy']);
-Route::get('/view/{id}',[documentController::class,'show']);
-
 Route::get('/download/{title}',[documentController::class,'download']);
+Route::delete('/download/{title}',[documentController::class,'destroy']);
+
+Route::get('/view/{id}',[documentController::class,'show']);
+Route::post('/date',[documentController::class,'date']);
+
+
 Route::get('/login',[documentController::class,'login']);
 Route::post('/user/login',[userController::class,'userLogin']);
 Route::get('/signup',[userController::class,'signup']);

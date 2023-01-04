@@ -17,16 +17,17 @@
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light">Upload Document</div>
+                
                 <div class="list-group list-group-flush">
                     <form method="POST" action="/upload" enctype="multipart/form-data" >
                         @csrf
+                        <label for="files" class="form-label mt-4"></label>
                    <input
                         type="file"
-                        class="border border-gray-200 rounded p-2 w-full"
+                        class="col-sm-3"
                         name="title"
                         value="{{old('title')}}"
-                        {{-- accept="title/*"
-                        multiple --}}
+                        multiple 
                        
                     />
                     <button class="ml-2">add</button>
@@ -61,9 +62,29 @@
                 <!-- Page content-->
                 <div class="container-fluid">
                     <h1 class="mt-4">Uploaded File</h1>
-                    
-                      
-                     
+                    <p>Total File Uploaded {{$posts}}</p>
+                    <p>Total Users {{$users}}</p>
+
+                      {{-- search by date --}}
+                      <form action="/date" method="POST">
+                        @csrf
+                     <div class="form-group row mb-3">
+                        <label for="date" class="col-form-label col-sm-2">From</label>
+                        <div class="col-sm-3">
+                            <input type="date" class="form-control sm-3" name="fromdate" id="fromdate" required>
+
+                        </div>
+                        <label for="date" class="col-form-label col-sm-2">To</label>
+                        <div class="col-sm-3">
+                            <input type="date" class="form-control sm-3" name="todate" id="todate" required>
+
+                        </div>
+                        <div class="col-sm-2">
+                        <button type="submit" class="btn btn-primary" name="search">Search</button>
+                    </div>
+                     </div>
+                    </form>
+                     {{-- ---------------------------------- --}}
                             @unless($pdfs->isEmpty())
                            
                             <table class="table table-striped">
@@ -76,7 +97,8 @@
                                     <th>Download</th>
                                     <th>Delete</th>
                                    
-                                    <th>Created By</th>
+                                    <th>Name</th>
+                                    <th>Date</th>
                                     
                                   </tr>
                                 </thead>
@@ -86,7 +108,7 @@
                                         <td>{{$pdf->title}}</td>
                                         {{-- <td>{{$pdf->title->count()}}</td> --}}
                                         <td><a href={{"/view/$pdf->id"}}>View</a></td>
-                                        <td><a href={{"/download/$pdf->title"}}>Download</a></td>
+                                        <td><a href={{url("/download/$pdf->title")}}>Download</a></td>
                                         
                                         <td>  <form method="POST" action="/download/{{$pdf->id}}" >
                                             @csrf
@@ -95,6 +117,8 @@
                                             <button style="min-width: 6rem" class="btn btn-danger ml-5 ">Delete</button>
                                         </form></td>
                                         <td>{{$pdf->user_id}}</td>
+                                        <td>{{$pdf->created_at}}</td>
+                                       
                                     </tr>
                                     @endforeach
                                     @else

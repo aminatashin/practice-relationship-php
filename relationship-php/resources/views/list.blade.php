@@ -10,6 +10,7 @@
 <iframe height="400" width="400" src="/assets/{{$pdf->title}}" frameborder="0"></iframe>
 <p>
     users:
+  <h1>{{auth()->user()->name}}</h1>  
     
     
     
