@@ -11,15 +11,19 @@ use App\Models\documentModel;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class documentController extends Controller
 {
     public function index(){
-      $posts= documentModel::count();
+      $uploadedFile= documentModel::count();
       $users= User::count();
-        return view('home',compact('posts','users'), [
-            'pdfs'=> documentModel::latest()->get()
+ 
+     
+        return view('home',compact('users','uploadedFile'), [
+            'pdfs'=> documentModel::latest()->get(),
+            'indis'=> User::all(),
         ]);
     }
 
@@ -56,6 +60,7 @@ class documentController extends Controller
       
     
       return response()->download(public_path("assets".$title));
+
     }
 
     public function destroy(documentModel $title){
@@ -77,10 +82,11 @@ class documentController extends Controller
       
     $data = DB::select("SELECT * FROM document WHERE created_at BETWEEN '$fromdate 00:00:00'AND'$todate 23:59:59'");
      
-    $posts= documentModel::count();
+    $uploadedFile= documentModel::count();
      $users= User::count();
-       return view('home',compact('data','posts','users'), [
-           'pdfs'=> documentModel::latest()->get()
+       return view('home',compact('data','uploadedFile','users'), [
+           'pdfs'=> documentModel::latest()->get(),
+           'indis'=> User::all(),
        ]);
 
 

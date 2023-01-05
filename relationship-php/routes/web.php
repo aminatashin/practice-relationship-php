@@ -18,6 +18,7 @@ use App\Models\documentModel;
 */
 
 Route::get('/',[documentController::class,'index']);
+Route::get('/',[userController::class,'index']);
 Route::post('/upload',[documentController::class,'store']);
 Route::get('/download/{title}',[documentController::class,'download']);
 Route::delete('/download/{title}',[documentController::class,'destroy']);

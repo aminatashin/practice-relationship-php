@@ -62,8 +62,9 @@
                 <!-- Page content-->
                 <div class="container-fluid">
                     <h1 class="mt-4">Uploaded File</h1>
-                    <p>Total File Uploaded {{$posts}}</p>
+                    <p>Total File Uploaded {{$uploadedFile}}</p>
                     <p>Total Users {{$users}}</p>
+                    {{-- <p>{{$user->name}}</p> --}}
 
                       {{-- search by date --}}
                       <form action="/date" method="POST">
@@ -108,7 +109,7 @@
                                         <td>{{$pdf->title}}</td>
                                         {{-- <td>{{$pdf->title->count()}}</td> --}}
                                         <td><a href={{"/view/$pdf->id"}}>View</a></td>
-                                        <td><a href={{url("/download/$pdf->title")}}>Download</a></td>
+                                        <td><a href={{url('/download',$pdf)}}>Download</a></td>
                                         
                                         <td>  <form method="POST" action="/download/{{$pdf->id}}" >
                                             @csrf
@@ -145,10 +146,11 @@
             <div class="border-end bg-white" id="sidebar-wrapper">
                 @auth
                 <div class="sidebar-heading border-bottom bg-light">wellcome {{auth()->user()->name}}</div>
+                
                 @endauth
                 <div class="list-group list-group-flush">
-                    @foreach ($pdfs as $pdf)
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">{{$pdf->user_id}}</a>
+                    @foreach ($indis as $p)
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">{{$p->name}}</a>
                     @endforeach
                    
                  
