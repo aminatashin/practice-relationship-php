@@ -17,7 +17,7 @@ class userController extends Controller
         $users= User::count();
        
           return view('home',compact('uploadedFile','users'), [
-              'indis'=> User::all(),
+             
               'pdfs'=>documentModel::latest()->get()
           ]);
     }

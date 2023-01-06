@@ -4,29 +4,39 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 
+use App\Models\ProjectModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Models\documentModel;
 
-use App\Http\Controllers\Controller;
 use GuzzleHttp\Psr7\Response;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class documentController extends Controller
 {
     public function index(){
+
+ 
+     
+        return view('home',[
+          'pdfs'=> documentModel::latest()->get(),
+        ]);
+    }
+    public function indexProject(){
       $uploadedFile= documentModel::count();
       $users= User::count();
  
      
-        return view('home',compact('users','uploadedFile'), [
+        return view('project',compact('users','uploadedFile'), [
             'pdfs'=> documentModel::latest()->get(),
-            'indis'=> User::all(),
+            
+            
         ]);
-    }
 
+    }
    
 
     public function show(documentModel $id){
@@ -36,12 +46,17 @@ class documentController extends Controller
      ]); 
      
     }
-
+    public function form(){
+      return view( 'form');
+    }
+    
+    
     public function store(Request $request){
     // $data=new documentModel();
     $data = $request->validate([
       'title'=>'required',
-      // 'upload-date'=>'required|date|date_format:m-d-y'
+      
+      
     ]);
     
     $file=$request->file('title');
@@ -52,7 +67,7 @@ class documentController extends Controller
     documentModel::create($data);
 
 
-    return redirect('/');
+    return redirect('/project');
     }
   
   
@@ -68,7 +83,7 @@ class documentController extends Controller
         abort('403','Only the Creator!');
       }
       $title->delete();
-      return redirect('/');
+      return redirect('/project');
     }
 
     public function login(){
@@ -77,32 +92,36 @@ class documentController extends Controller
 
     public function date(Request $request){
     
-      $fromdate = $request->input('fromdate');
-      $todate =  $request->input('todate');
+    //   $fromdate = $request->input('fromdate');
+    //   $todate =  $request->input('todate');
       
-    $data = DB::select("SELECT * FROM document WHERE created_at BETWEEN '$fromdate 00:00:00'AND'$todate 23:59:59'");
-     
+    // $data = DB::select("SELECT * FROM document WHERE created_at BETWEEN '$fromdate 00:00:00'AND'$todate 23:59:59'");
+    //  dd($data);
+    // $uploadedFile= documentModel::count();
+    //  $users= User::count();
+    //    return view('home',compact('data','uploadedFile','users'), [
+    //        'pdfs'=> documentModel::latest()->get(),
+    //        'indis'=> User::all(),
+    //    ]);
+
+
+
+       $fromdate = $request->input('fromdate');
+       $todate =  $request->input('todate');
+    $query = DB::table('document')->select()
+    ->where('created_at' , '>=' , $fromdate)
+    ->where('created_at' , '<=' , $todate)
+
+    ->get();
+  
     $uploadedFile= documentModel::count();
      $users= User::count();
-       return view('home',compact('data','uploadedFile','users'), [
+       return view('home',compact('query','uploadedFile','users'), [
            'pdfs'=> documentModel::latest()->get(),
-           'indis'=> User::all(),
+           
        ]);
 
-
-
-
-    // $query = DB::table('document')->select()
-    // ->where('created_at' , '>=' , $fromdate)
-    // ->where('created_at' , '<=' , $todate)
-
-    // ->get();
    
-    // $posts= documentModel::count();
-    // $users= User::count();
-    //   return view('home',compact('query','posts','users'), [
-    //       'pdfs'=> documentModel::latest()->get()
-    //   ]);
    }
 
 }

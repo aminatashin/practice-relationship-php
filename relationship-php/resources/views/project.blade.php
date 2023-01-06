@@ -16,28 +16,37 @@
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
-               <a href="/"> <div class="sidebar-heading border-bottom bg-light">Projects</div></a>
-                <a href="/form">  <button class="btn btn-danger" >Add Project</button></a>
-
-              <a href="/project">  <button class="btn btn-danger ml-3 mt-4" >anything</button></a>
+                <div class="sidebar-heading border-bottom bg-light">Projects</div>
+             
                 
-            
+                <div class="list-group list-group-flush">
+                    <form method="POST" action="/upload" enctype="multipart/form-data" >
+                        @csrf
+                        <label for="files" class="form-label mt-4"></label>
+                   <input
+                        type="file"
+                        class="col-sm-3"
+                        name="title"
+                        value="{{old('title')}}"
+                        multiple 
+                       
+                    />
+                    <button class="ml-2">add</button>
+                </form>
+                </div>
             </div>
             <!-- Page content wrapper-->
             <div id="page-content-wrapper">
                 <!-- Top navigation-->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <div class="container-fluid">
-                      
                         @auth
                         <form method="POST" action="/logout">
                             @csrf
                             <button type="submit" class="btn btn-primary" id="sidebarToggle">Log Out</button>
                             <a href="/"> <button class="btn btn-primary" id="sidebarToggle">Back</button></a>
-                           
 
                         </form>
-                        
                         @else
                         
                         {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button> --}}
@@ -45,8 +54,6 @@
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                                 <li class="nav-item active"><a class="nav-link" href="/signup">signup</a></li>
                                 <li class="nav-item active"><a class="nav-link" href="/login">logIn</a></li>
-                               
-                                
                              
                                 </li>
                             </ul>
@@ -55,14 +62,14 @@
                     </div>
                 </nav>
                 <!-- Page content-->
-                {{-- <div class="container-fluid">
+                <div class="container-fluid">
                     <h1 class="mt-4">Uploaded File</h1>
                     <p>Total File Uploaded {{$uploadedFile}}</p>
                     <p>Total Users {{$users}}</p>
                     {{-- <p>{{$user->name}}</p> --}}
 
                       {{-- search by date --}}
-                      {{-- <form action="/date" method="POST">
+                      <form action="/date" method="POST">
                         @csrf
                      <div class="form-group row mb-3">
                         <label for="date" class="col-form-label col-sm-2">From</label>
@@ -79,10 +86,9 @@
                         <button type="submit" class="btn btn-primary" name="search">Search</button>
                     </div>
                      </div>
-                    </form> --}}
-                    <h1>click on projects</h1>
+                    </form>
                      {{-- ---------------------------------- --}}
-                            {{-- @unless($pdfs->isEmpty())
+                            @unless($pdfs->isEmpty())
                            
                             <table class="table table-striped">
                               <thead>
@@ -103,7 +109,7 @@
                                     @foreach($pdfs as $pdf)
                                     <tr>
                                         <td>{{$pdf->title}}</td>
-                                      
+                                        {{-- <td>{{$pdf->title->count()}}</td> --}}
                                         <td><a href={{"/view/$pdf->id"}}>View</a></td>
                                         <td><a href={{url('/download',$pdf)}}>Download</a></td>
                                         
@@ -138,14 +144,13 @@
                      
                     
                 </div>
-            </div> --}}
+            </div>
             <div class="border-end bg-white" id="sidebar-wrapper">
                 @auth
                 <div class="sidebar-heading border-bottom bg-light">wellcome {{auth()->user()->name}}</div>
                 
                 @endauth
-            </div>
-                {{-- <div class="list-group list-group-flush">
+                <div class="list-group list-group-flush">
                     @foreach ($pdfs as $pdf)
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">{{$pdf->users->name}}</a>
                     @endforeach
@@ -153,7 +158,7 @@
                  
                 </div>
             </div>
-        </div>   --}}
+        </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

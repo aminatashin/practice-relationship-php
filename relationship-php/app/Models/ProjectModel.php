@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class documentModel extends Model
+class ProjectModel extends Model
 {
     use HasFactory;
-    protected $fillable=['title','user_id','name'];
-    protected $table='document';
+    protected $fillable=['name','user_id'];
+    protected $table='project';
     public function users(){
         return $this->belongsTo(User::class,'user_id');
     }

@@ -7,10 +7,14 @@
     <title>Document</title>
 </head>
 <body>
+  <div>
+    <h1>{{$pdf->title}}</h1>
+  </div>
+  Created By:
+  <h1>{{$pdf->users->name}}</h1>  
 <iframe height="400" width="400" src="/assets/{{$pdf->title}}" frameborder="0"></iframe>
 <p>
-    users:
-  <h1>{{auth()->user()->name}}</h1>  
+   
     
     
     

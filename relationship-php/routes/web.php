@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\documentController;
+use App\Http\Controllers\projectController;
 use App\Models\documentModel;
 
 /*
@@ -18,8 +19,13 @@ use App\Models\documentModel;
 */
 
 Route::get('/',[documentController::class,'index']);
+Route::get('/test',[projectController::class,'indexName']);
+Route::get('/project',[documentController::class,'indexProject']);
+Route::get('/form',[documentController::class,'form']);
 Route::get('/',[userController::class,'index']);
 Route::post('/upload',[documentController::class,'store']);
+
+Route::post('/project',[documentController::class,'storeForm']);
 Route::get('/download/{title}',[documentController::class,'download']);
 Route::delete('/download/{title}',[documentController::class,'destroy']);
 
