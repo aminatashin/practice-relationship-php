@@ -43,10 +43,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-   public function documents(){
-    return $this->hasMany(documentModel::class,'user_id');
-   }
+
    public function projects(){
-    return $this->hasMany(ProjectModel::class,'user_id');
+    return $this->belongsToMany(ProjectModel::class);
+   }
+      public function documents(){
+    return $this->hasMany(documentModel::class,'user_id');
    }
 }

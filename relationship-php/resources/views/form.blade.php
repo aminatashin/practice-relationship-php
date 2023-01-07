@@ -63,7 +63,7 @@
                      
                         
                         <div class="list-group list-group-flush">
-                            <form method="POST" action="/project" enctype="multipart/form-data" >
+                            <form method="POST" action="/projectname" enctype="multipart/form-data" >
                                 @csrf
                                 <label for="files" class="form-label mt-4"></label>
                            <input

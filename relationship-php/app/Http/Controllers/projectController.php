@@ -2,28 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\ProjectModel;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+
 
 class projectController extends Controller
 {
 
-    public function indexName(){
-        // $projectName = ProjectModel::all();
-        return view('test',[
-            'projects'=>ProjectModel::latest()->get(),
+    public function index(){
+
+        return view('home',[
+            'projects'=>ProjectModel::latest()->get()
         ]);
     }
+// ---------------------------------------------------
+    public function form(){
+        return view( 'form');
+      }
+// ---------------------------------------------------
 
 
-    public function store(Request $request){
-        $form = $request->validate([
-            'name'=>'required'
+    public function storeForm(Request $request){
+        $form = ProjectModel::create([
+            'name'=>'aminamin'
         ]);
-        // $form['user_id']=auth()->id();
-        ProjectModel::create($form);
+        $user = User::all();
+      
+        $form->users()->attach($user);
+       
     
     
         return redirect('/');
     }
 }
+// ---------------------------------------------------

@@ -11,16 +11,16 @@ use Illuminate\Contracts\Validation\Rule;
 class userController extends Controller
 {
 
-    public function index(){
+    // public function index(){
     
-        $uploadedFile= documentModel::count();
-        $users= User::count();
+    //     $uploadedFile= documentModel::count();
+    //     $users= User::count();
        
-          return view('home',compact('uploadedFile','users'), [
+    //       return view('home',compact('uploadedFile','users'), [
              
-              'pdfs'=>documentModel::latest()->get()
-          ]);
-    }
+    //           'pdfs'=>documentModel::latest()->get()
+    //       ]);
+    // }
 
 
     public function signup(){

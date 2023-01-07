@@ -106,7 +106,7 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($pdfs as $pdf)
+                                    @foreach($tasksprojects as $pdf)
                                     <tr>
                                         <td>{{$pdf->title}}</td>
                                         {{-- <td>{{$pdf->title->count()}}</td> --}}
@@ -151,7 +151,7 @@
                 
                 @endauth
                 <div class="list-group list-group-flush">
-                    @foreach ($pdfs as $pdf)
+                    @foreach ( $tasksprojects as $pdf)
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">{{$pdf->users->name}}</a>
                     @endforeach
                    

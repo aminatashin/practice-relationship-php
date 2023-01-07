@@ -17,20 +17,15 @@ use Illuminate\Support\Facades\Storage;
 
 class documentController extends Controller
 {
-    public function index(){
-
- 
-     
-        return view('home',[
-          'pdfs'=> documentModel::latest()->get(),
-        ]);
-    }
+   
     public function indexProject(){
       $uploadedFile= documentModel::count();
       $users= User::count();
- 
+      $projects = ProjectModel::find(1);
+      
+      $tasksprojects = $projects ->documents;
      
-        return view('project',compact('users','uploadedFile'), [
+        return view('project',compact('users','uploadedFile','tasksprojects'), [
             'pdfs'=> documentModel::latest()->get(),
             
             
@@ -46,9 +41,7 @@ class documentController extends Controller
      ]); 
      
     }
-    public function form(){
-      return view( 'form');
-    }
+    
     
     
     public function store(Request $request){
@@ -91,20 +84,7 @@ class documentController extends Controller
     }
 
     public function date(Request $request){
-    
-    //   $fromdate = $request->input('fromdate');
-    //   $todate =  $request->input('todate');
-      
-    // $data = DB::select("SELECT * FROM document WHERE created_at BETWEEN '$fromdate 00:00:00'AND'$todate 23:59:59'");
-    //  dd($data);
-    // $uploadedFile= documentModel::count();
-    //  $users= User::count();
-    //    return view('home',compact('data','uploadedFile','users'), [
-    //        'pdfs'=> documentModel::latest()->get(),
-    //        'indis'=> User::all(),
-    //    ]);
-
-
+   
 
        $fromdate = $request->input('fromdate');
        $todate =  $request->input('todate');
@@ -116,7 +96,7 @@ class documentController extends Controller
   
     $uploadedFile= documentModel::count();
      $users= User::count();
-       return view('home',compact('query','uploadedFile','users'), [
+       return view('project',compact('query','uploadedFile','users'), [
            'pdfs'=> documentModel::latest()->get(),
            
        ]);

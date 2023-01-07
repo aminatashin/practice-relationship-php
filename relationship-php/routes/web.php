@@ -1,11 +1,14 @@
 <?php
 
 
+use App\Models\User;
+use App\Models\ProjectModel;
+use App\Models\documentModel;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
-use App\Http\Controllers\documentController;
 use App\Http\Controllers\projectController;
-use App\Models\documentModel;
+use App\Http\Controllers\documentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,25 +20,41 @@ use App\Models\documentModel;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/',[documentController::class,'index']);
-Route::get('/test',[projectController::class,'indexName']);
-Route::get('/project',[documentController::class,'indexProject']);
-Route::get('/form',[documentController::class,'form']);
-Route::get('/',[userController::class,'index']);
-Route::post('/upload',[documentController::class,'store']);
-
-Route::post('/project',[documentController::class,'storeForm']);
-Route::get('/download/{title}',[documentController::class,'download']);
-Route::delete('/download/{title}',[documentController::class,'destroy']);
-
-Route::get('/view/{id}',[documentController::class,'show']);
-Route::post('/date',[documentController::class,'date']);
+// PROJECTS
+Route::get('/',[projectController::class,'index']);
 
 
-Route::get('/login',[documentController::class,'login']);
+Route::get('/form',[projectController::class,'form']);
+ Route::post('/projectname',[projectController::class,'storeForm']);
+// USERS
+
 Route::post('/user/login',[userController::class,'userLogin']);
 Route::get('/signup',[userController::class,'signup']);
 Route::post('/register',[userController::class,'register']);
 Route::post('/logout',[userController::class,'logout']);
+// Route::get('/',[userController::class,'index']);
+
+
+// DOCUMENTS
+
+
+Route::post('/upload',[documentController::class,'store']);
+Route::get('/project',[documentController::class,'indexProject']);
+Route::get('/download/{title}',[documentController::class,'download']);
+Route::delete('/download/{title}',[documentController::class,'destroy']);
+Route::post('/date',[documentController::class,'date']);
+Route::get('/login',[documentController::class,'login']);
+
+
+Route::get('/example',function(){
+  $project = ProjectModel::find(1);
+  return $project->documents;
+
+});
+
+
+
+
+Route::get('/view/{id}',[documentController::class,'show']);
+
 

@@ -15,10 +15,14 @@
     <body>
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
-            <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="border-end bg-white mx-3  " id="sidebar-wrapper">
                <a href="/"> <div class="sidebar-heading border-bottom bg-light">Projects</div></a>
-                <a href="/form">  <button class="btn btn-danger" >Add Project</button></a>
-
+                <a href="/form">  <button class="btn btn-danger mt-2" >Add Project</button></a>
+                <br>
+                @foreach($projects as $project)
+                <a href="/project">  <button class="btn btn-danger my-3 " >{{$project->name}}</button></a>
+                <br>
+                @endforeach
               <a href="/project">  <button class="btn btn-danger ml-3 mt-4" >anything</button></a>
                 
             
@@ -145,6 +149,7 @@
                 
                 @endauth
             </div>
+           
                 {{-- <div class="list-group list-group-flush">
                     @foreach ($pdfs as $pdf)
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">{{$pdf->users->name}}</a>
