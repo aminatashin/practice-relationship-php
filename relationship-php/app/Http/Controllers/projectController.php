@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\ProjectModel;
 use Illuminate\Http\Request;
+use App\Models\documentModel;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 
 class projectController extends Controller
@@ -22,15 +24,16 @@ class projectController extends Controller
         return view( 'form');
       }
 // ---------------------------------------------------
-
+   
 
     public function storeForm(Request $request){
         $form = ProjectModel::create([
-            'name'=>'aminamin'
+            'name'=>$request->name
         ]);
         $user = User::all();
-      
+   
         $form->users()->attach($user);
+      
        
     
     

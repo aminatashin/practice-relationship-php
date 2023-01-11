@@ -23,7 +23,7 @@
                 <a href="/project">  <button class="btn btn-danger my-3 " >{{$project->name}}</button></a>
                 <br>
                 @endforeach
-              <a href="/project">  <button class="btn btn-danger ml-3 mt-4" >anything</button></a>
+              {{-- <a href="/project">  <button class="btn btn-danger ml-3 mt-4" >anything</button></a> --}}
                 
             
             </div>

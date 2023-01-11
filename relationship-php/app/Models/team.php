@@ -9,5 +9,6 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class team extends Pivot
 {
     use HasFactory;
+   
     protected $table = 'project_model_user';
 }

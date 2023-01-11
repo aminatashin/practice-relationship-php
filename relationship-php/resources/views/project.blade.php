@@ -18,7 +18,7 @@
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light">Projects</div>
              
-                
+                <a href="/"> <button class="btn btn-primary" id="sidebarToggle">Back</button></a>
                 <div class="list-group list-group-flush">
                     <form method="POST" action="/upload" enctype="multipart/form-data" >
                         @csrf
@@ -44,7 +44,7 @@
                         <form method="POST" action="/logout">
                             @csrf
                             <button type="submit" class="btn btn-primary" id="sidebarToggle">Log Out</button>
-                            <a href="/"> <button class="btn btn-primary" id="sidebarToggle">Back</button></a>
+                          
 
                         </form>
                         @else
@@ -52,6 +52,7 @@
                         {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button> --}}
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                               
                                 <li class="nav-item active"><a class="nav-link" href="/signup">signup</a></li>
                                 <li class="nav-item active"><a class="nav-link" href="/login">logIn</a></li>
                              
@@ -66,7 +67,7 @@
                     <h1 class="mt-4">Uploaded File</h1>
                     <p>Total File Uploaded {{$uploadedFile}}</p>
                     <p>Total Users {{$users}}</p>
-                    {{-- <p>{{$user->name}}</p> --}}
+                  
 
                       {{-- search by date --}}
                       <form action="/date" method="POST">
@@ -106,7 +107,8 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($tasksprojects as $pdf)
+                            
+                                    @foreach( $tasksprojects as $pdf)
                                     <tr>
                                         <td>{{$pdf->title}}</td>
                                         {{-- <td>{{$pdf->title->count()}}</td> --}}
@@ -124,6 +126,7 @@
                                        
                                     </tr>
                                     @endforeach
+                              
                                     @else
                                     <tr >
                                         <td colspan="5">
@@ -134,7 +137,7 @@
                                     @endunless
                                 </tbody>
                                
-                              
+                           
                              
                          
                         </table>
@@ -151,7 +154,7 @@
                 
                 @endauth
                 <div class="list-group list-group-flush">
-                    @foreach ( $tasksprojects as $pdf)
+                    @foreach (  $tasksprojects as $pdf)
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">{{$pdf->users->name}}</a>
                     @endforeach
                    

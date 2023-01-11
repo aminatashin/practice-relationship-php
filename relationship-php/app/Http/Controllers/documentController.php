@@ -11,6 +11,7 @@ use App\Models\documentModel;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\team;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -22,8 +23,12 @@ class documentController extends Controller
       $uploadedFile= documentModel::count();
       $users= User::count();
       $projects = ProjectModel::find(1);
+      if($projects->documents){
+       
       
-      $tasksprojects = $projects ->documents;
+        $tasksprojects = $projects ->documents;
+      }
+  
      
         return view('project',compact('users','uploadedFile','tasksprojects'), [
             'pdfs'=> documentModel::latest()->get(),
@@ -45,11 +50,9 @@ class documentController extends Controller
     
     
     public function store(Request $request){
-    // $data=new documentModel();
+  
     $data = $request->validate([
       'title'=>'required',
-      
-      
     ]);
     
     $file=$request->file('title');
@@ -58,8 +61,21 @@ class documentController extends Controller
     $data['title']=$filename;
     $data['user_id']=auth()->id();
     documentModel::create($data);
+    
 
-
+    //   $data = $request-> title;
+    //   $fileName = time(). '.' .$data->getClientOriginalExtension();
+      
+    //  $doc= documentModel::create([
+    //     'title'=>$request->title->move('assets',$fileName),
+    //     'user_id'=>auth()->id()
+    //   ]);
+    //   $project = ProjectModel::get();
+    //   $user = User::all();
+   
+    //     $project->users()->attach($user);
+   
+   
     return redirect('/project');
     }
   
