@@ -19,10 +19,10 @@ use Illuminate\Support\Facades\Storage;
 class documentController extends Controller
 {
    
-    public function indexProject(){
+    public function indexProject($id){
       $uploadedFile= documentModel::count();
       $users= User::count();
-      $projects = ProjectModel::find(1);
+      $projects = ProjectModel::find($id);
       if($projects->documents){
        
       
@@ -76,7 +76,7 @@ class documentController extends Controller
     //     $project->users()->attach($user);
    
    
-    return redirect('/project');
+    return redirect('/project/{id}');
     }
   
   
@@ -92,7 +92,7 @@ class documentController extends Controller
         abort('403','Only the Creator!');
       }
       $title->delete();
-      return redirect('/project');
+      return redirect('/project/{id}');
     }
 
     public function login(){

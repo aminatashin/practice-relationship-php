@@ -20,7 +20,7 @@
                 <a href="/form">  <button class="btn btn-danger mt-2" >Add Project</button></a>
                 <br>
                 @foreach($projects as $project)
-                <a href="/project">  <button class="btn btn-danger my-3 " >{{$project->name}}</button></a>
+                <a href="/project/{{$project->id}}">  <button class="btn btn-danger my-3 " >{{$project->name}}</button></a>
                 <br>
                 @endforeach
               {{-- <a href="/project">  <button class="btn btn-danger ml-3 mt-4" >anything</button></a> --}}

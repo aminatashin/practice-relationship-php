@@ -39,7 +39,7 @@ Route::post('/logout',[userController::class,'logout']);
 
 
 Route::post('/upload',[documentController::class,'store']);
-Route::get('/project',[documentController::class,'indexProject']);
+Route::get('/project/{id}',[documentController::class,'indexProject']);
 Route::get('/download/{title}',[documentController::class,'download']);
 Route::delete('/download/{title}',[documentController::class,'destroy']);
 Route::post('/date',[documentController::class,'date']);
