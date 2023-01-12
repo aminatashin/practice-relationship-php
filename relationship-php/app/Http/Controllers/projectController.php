@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\documentModel;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-
+use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class projectController extends Controller
 {
@@ -26,15 +26,15 @@ class projectController extends Controller
 // ---------------------------------------------------
    
 
-    public function storeForm(Request $request){
-        $form = ProjectModel::create([
-            'name'=>$request->name
-        ]);
-        $user = User::all();
+    public function storeForm(Request $request ,$id){
+         $form = ProjectModel::create([
+             'name'=>$request->name
+         ]);
+         $user = User::all();
    
-        $form->users()->attach($user);
+         $form->users()->attach($user);
       
-       
+    
     
     
         return redirect('/');

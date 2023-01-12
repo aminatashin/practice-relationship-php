@@ -62,6 +62,7 @@ class documentController extends Controller
     $data['user_id']=auth()->id();
     documentModel::create($data);
     
+    
 
     //   $data = $request-> title;
     //   $fileName = time(). '.' .$data->getClientOriginalExtension();
@@ -70,10 +71,7 @@ class documentController extends Controller
     //     'title'=>$request->title->move('assets',$fileName),
     //     'user_id'=>auth()->id()
     //   ]);
-    //   $project = ProjectModel::get();
-    //   $user = User::all();
-   
-    //     $project->users()->attach($user);
+ 
    
    
     return redirect('/project/{id}');
